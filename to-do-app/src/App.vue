@@ -71,7 +71,8 @@
     </v-app-bar>
 
     <v-main>
-      <router-view></router-view>
+        <!-- rotta alle pagine -->
+      <router-view></router-view> 
     </v-main>
   </v-app>
 </template>
