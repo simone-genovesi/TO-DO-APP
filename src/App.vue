@@ -15,13 +15,10 @@
               color="brown"
               size="48"
             >
-              <span class="white--text text-h5">SG</span>
+              <span class="white--text text-h5">{{ currentUser ? riduciAIniziali() : 'ND' }}</span>
             </v-avatar>
         <div class="white--text text-subtitle-1 font-weight-bold">
-          Simone Genovesi
-        </div>
-        <div class="white--text text-subtitle-2">
-          simone_genovesi
+          {{ currentUser ? currentUser.name : 'Nessun utente corrente' }}
         </div>
       </v-img>
 
@@ -89,12 +86,26 @@
     data: () => ({
       drawer: null,
       items: [
+        { title: 'Login', icon: 'mdi-login', to: '/login'},
         { title: 'Task', icon: 'mdi-format-list-checks', to: '/' },
-        { title: 'Completati', icon: 'mdi-help-box', to: '/about' },
+        { title: 'Completati', icon: 'mdi-check', to: '/done' },
       ],
+      currentUser: JSON.parse(localStorage.getItem('currentUser')) || null,
     }),
     mounted() {
       this.$store.dispatch('getTasks')
+    },
+    methods: {
+      trasformaInStringaConUnderscore() {
+        const parole = this.currentUser.name.split(' '); // Dividi la stringa in parole usando lo spazio come separatore
+        const stringaConUnderscore = parole.map(parola => parola.toLowerCase()).join('_');
+        return stringaConUnderscore;
+      },
+      riduciAIniziali() {
+        const parole = this.currentUser.name.split(' '); // Dividi la stringa in parole usando lo spazio come separatore
+        const iniziali = parole.map(parola => parola[0].toUpperCase()); // Estrai le iniziali e convertile in maiuscolo
+        return iniziali.join(''); // Unisci le iniziali in una nuova stringa
+      }
     },
     components: {
       'snackbar-component': require('@/components/Shared/SnackbarComponent.vue').default

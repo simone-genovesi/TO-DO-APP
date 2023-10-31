@@ -19,7 +19,8 @@
               {{ task.title }}
             </v-list-item-title>
           </v-list-item-content>
-  
+          
+          
           <v-list-item-action>
             <menu-task :task="task" />
           </v-list-item-action>

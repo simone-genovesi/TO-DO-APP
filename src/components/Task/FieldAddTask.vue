@@ -4,6 +4,7 @@
     @keyup.enter="addTask"
     class="pa-3"
     outlined
+    color="teal"
     label="Inserisci qualcosa da fare"
     hide-details
     clearable

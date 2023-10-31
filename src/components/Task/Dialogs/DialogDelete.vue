@@ -6,9 +6,9 @@
   >
     <v-card>
       <v-card-title class="headline">
-        Delete task?
+        Cancellazione del Task
       </v-card-title>
-      <v-card-text>Are you sure you wanna delete this gosh darn motherflipping task?</v-card-text>
+      <v-card-text>Sei sicuro di voler cancellare il task?</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
@@ -22,7 +22,7 @@
           color="teal darken-1"
           text
         >
-          Yes
+          Si
         </v-btn>
       </v-card-actions>
     </v-card>

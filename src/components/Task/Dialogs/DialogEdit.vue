@@ -6,10 +6,10 @@
   >
     <v-card>
       <v-card-title class="headline">
-        Edit task
+        Modifica task
       </v-card-title>
       <v-card-text>
-        Edit the title of this task:
+        Modifica il nome di task:
         <v-text-field
           v-model="taskTitle"
           @keyup.enter="saveTask"
@@ -21,7 +21,7 @@
           @click="$emit('close')"
           text
         >
-          Cancel
+          Annulla
         </v-btn>
         <v-btn
           @click="saveTask"
@@ -29,7 +29,7 @@
           color="teal darken-1"
           text
         >
-          Save
+          Salva
         </v-btn>
       </v-card-actions>
     </v-card>

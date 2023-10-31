@@ -4,8 +4,8 @@
       flat
     >
       <task 
-        v-for="task in $store.getters.tasksFiltered"
-        :key="task.id"
+        v-for="task in $store.getters.completedTasks"
+        :key="task.title"
         :task="task"
       />
     </v-list>
