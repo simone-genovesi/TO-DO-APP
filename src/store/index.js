@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Localbase from 'localbase'
+import axios from 'axios'
 
 let db = new Localbase('db')
 db.config.debug = false
@@ -12,14 +13,16 @@ export default new Vuex.Store({
   state: {
     appTitle: process.env.VUE_APP_TITLE,
     tasks: [],
-    // users: [],
     snackbar: {
       show: false,
       text: ''
-    }
+    },
+    comic: null
   },
   mutations: {
-
+    setComic(state, comic) {
+      state.comic = comic;
+    },
     addTask(state, newTask) {
       state.tasks.push(newTask);
     },
@@ -53,6 +56,16 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    fetchComic({ commit }) {
+      const comicURL = 'https://cors-anywhere.herokuapp.com/https://xkcd.com/614/info.0.json';
+      axios.get(comicURL)
+        .then((response) => {
+          commit('setComic', response.data);
+        })
+        .catch((error) => {
+          console.error('Errore nella richiesta XKCD:', error);
+        });
+    },
     login({ commit }, username) {
       let users = JSON.parse(localStorage.getItem('users')) || [];
       const existingUser = users.find(user => user.name === username);

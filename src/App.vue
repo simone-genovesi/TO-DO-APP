@@ -89,6 +89,7 @@
         { title: 'Login', icon: 'mdi-login', to: '/login'},
         { title: 'Task', icon: 'mdi-format-list-checks', to: '/' },
         { title: 'Completati', icon: 'mdi-check', to: '/done' },
+        { title: 'Albo', icon: 'mdi-tooltip-text', to: '/albo' }
       ],
       currentUser: JSON.parse(localStorage.getItem('currentUser')) || null,
     }),

@@ -30,14 +30,15 @@ export default {
   },
   computed: {
     newUserNameInvalid() {
-      return !this.newUserName
+      return !this.newUserName;
     }
   },
   methods: {
     addUser() {
       if (!this.newUserNameInvalid) {
-        this.$store.dispatch('login', this.newUserName)
-        this.newUserName = ''
+        this.$store.dispatch('login', this.newUserName);
+        this.newUserName = '';
+        this.$router.push('/');
       }
     }
   }
