@@ -63,7 +63,7 @@
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
         </v-row>
-        <v-row>
+        <v-row class="pt-10">
           <v-toolbar-title class="text-h4 ml-4">
             {{ $store.state.appTitle }}
           </v-toolbar-title>

@@ -1,38 +1,45 @@
 <template>
-    <div class="login pa-8">
-      <form ref="form" @submit.prevent="login()">
-        <v-text-field
-          v-model="username"
-          name="username"
-          label="Username"
-          type="text"
-          placeholder="username"
-          required
-        ></v-text-field>
-  
-        <v-btn type="submit" class="mt-4" color="teal" value="log in"
-          >Login</v-btn
-        >
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'LoginView',
-    data() {
-        return {
-            username: ''
-        };
-    },
-    methods: {
-        login() {
-            this.$store.dispatch('login', this.username)
-              .then(() => {
-                this.$router.push({ name: 'Home' });
-              });
-            this.username = '';
-        }
+  <v-text-field
+    v-model="newUserName"
+    @keyup.enter="addUser"
+    class="pa-3"
+    outlined
+    color="teal"
+    label="Username"
+    hide-details
+    clearable
+  >
+    <template v-slot:append-outer>
+      <v-icon
+        @click="addUser"
+        color="teal"
+        :disabled="newUserNameInvalid"
+      >
+        mdi-login
+      </v-icon>
+    </template>
+  </v-text-field>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      newUserName: ''
+    }
+  },
+  computed: {
+    newUserNameInvalid() {
+      return !this.newUserName
+    }
+  },
+  methods: {
+    addUser() {
+      if (!this.newUserNameInvalid) {
+        this.$store.dispatch('login', this.newUserName)
+        this.newUserName = ''
+      }
     }
   }
-  </script>
+}
+</script>

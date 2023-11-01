@@ -12,20 +12,14 @@ export default new Vuex.Store({
   state: {
     appTitle: process.env.VUE_APP_TITLE,
     tasks: [],
-    users: [],
-    currentUser: null,
+    // users: [],
     snackbar: {
       show: false,
       text: ''
     }
   },
   mutations: {
-    setUser(state, user) {
-      state.currentUser = user;
-    },
-    addUser(state, newUser) {
-      state.users.push(newUser);
-    },
+
     addTask(state, newTask) {
       state.tasks.push(newTask);
     },
@@ -60,32 +54,31 @@ export default new Vuex.Store({
   },
   actions: {
     login({ commit }, username) {
-      db.collection('users')
-      .doc({ name: username })
-      .get()
-      .then((user) => {
-        if (user) {
-          // Utente già esistente
-          localStorage.removeItem('currentUser');
-          commit('setUser', user);
-          commit('showSnackbar', 'Autenticato con un utente già esistente');
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        } else {
-          // Nuovo utente
-          localStorage.removeItem('currentUser');
-          const newUser = {
-            name: username,
-          };
-          db.collection('users').add(newUser).then((newUser) => {
-            commit('addUser', newUser);
-            commit('setUser', newUser);
-            commit('showSnackbar', 'Nuovo utente creato');
-          });
-          localStorage.setItem('currentUser', JSON.stringify(newUser));
-        }
-      })
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const existingUser = users.find(user => user.name === username);
+    
+      if (existingUser) {
+        // Utente già esistente
+        localStorage.removeItem('currentUser');
+        commit('showSnackbar', 'Autenticato con un utente già esistente');
+        localStorage.setItem('currentUser', JSON.stringify(existingUser));
+        console.log(users);
+      } else {
+        // Nuovo utente
+        localStorage.removeItem('currentUser');
+        const newUser = {
+          id: Date.now(),
+          name: username,
+        };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users)); // Salva l'array aggiornato nel localStorage
+        console.log(users);
+        commit('showSnackbar', 'Nuovo utente creato');
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+      }
     },
-    addTask({ commit }, newTaskTitle) {
+
+    addTask({ state, commit }, newTaskTitle) {
       const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
       const author = currentUser.name;
       let newTask = {
@@ -97,7 +90,8 @@ export default new Vuex.Store({
       db.collection('tasks').add(newTask).then(() => {
         commit('addTask', newTask);
         commit('showSnackbar', 'Task aggiunto!');
-      })
+      });
+      console.log(state.tasks)
     },
     doneTask({ state, commit }, id) {
       let task = state.tasks.filter(task => task.id === id)[0];

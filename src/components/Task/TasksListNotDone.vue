@@ -5,7 +5,7 @@
     >
       <task 
         v-for="task in $store.getters.notCompletedTasks"
-        :key="task.title"
+        :key="task.id"
         :task="task"
       />
     </v-list>

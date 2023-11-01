@@ -20,7 +20,7 @@
             </v-list-item-title>
           </v-list-item-content>
           
-          
+          Autore: {{ task.author }}
           <v-list-item-action>
             <menu-task :task="task" />
           </v-list-item-action>
