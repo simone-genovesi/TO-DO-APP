@@ -2,7 +2,6 @@
   <v-container fluid>
     <v-data-iterator
       :items="filteredTasks"
-      :page.sync="page"
       :search="search"
       :sort-by="sortBy.toLowerCase()"
       hide-default-footer
@@ -88,9 +87,6 @@ export default {
       }
     },
     computed: {
-      filteredKeys () {
-        return this.nameUsers();
-      },
       filteredTasks() {
         let tasks = this.$store.getters.completedTasks;
         if (this.sortBy) {

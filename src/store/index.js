@@ -56,8 +56,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchComic({ commit }) {
-      const comicURL = 'https://cors-anywhere.herokuapp.com/https://xkcd.com/614/info.0.json';
+    fetchComic({ commit }, num) {
+      const comicURL = `https://cors-anywhere.herokuapp.com/https://xkcd.com/${num}/info.0.json`;
       axios.get(comicURL)
         .then((response) => {
           commit('setComic', response.data);
