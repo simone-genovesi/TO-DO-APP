@@ -4,8 +4,8 @@
       flat
     >
       <task 
-        v-for="task in $store.getters.completedTasks"
-        :key="task.title"
+        v-for="task in tasks"
+        :key="task.id"
         :task="task"
       />
     </v-list>
@@ -13,6 +13,7 @@
   
   <script>
   export default {
+    props: ['tasks'],
     components: {
       'task': require('@/components/Task/OneTask.vue').default
     }

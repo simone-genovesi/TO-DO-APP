@@ -3,7 +3,7 @@
 
     <field-add-task />
 
-    <tasks-list
+    <tasks-list-not-done
       v-if="$store.getters.notCompletedTasks.length"
     />
 
@@ -20,7 +20,7 @@ export default {
   components: {
     
     'field-add-task': require('@/components/Task/FieldAddTask.vue').default,
-    'tasks-list': require('@/components/Task/TasksListNotDone.vue').default,
+    'tasks-list-not-done': require('@/components/Task/TasksListNotDone.vue').default,
     'no-tasks': require('@/components/Task/NoTasks.vue').default,
   }
 }
