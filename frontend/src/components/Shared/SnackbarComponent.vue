@@ -10,7 +10,7 @@
         text
         v-bind="attrs"
       >
-        Close
+        Chiudi
       </v-btn>
     </template>
   </v-snackbar>

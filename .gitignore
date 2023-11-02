@@ -21,3 +21,15 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# frontend specific ignores
+/frontend/node_modules
+/frontend/dist
+/frontend/.env.local
+/frontend/.env.*.local
+
+# backend specific ignores
+/backend/node_modules
+/frontend/dist
+/frontend/.env.local
+/frontend/.env.*.local

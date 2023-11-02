@@ -1,5 +1,11 @@
 # to-do-app
 
+## To run backend server
+
+```
+node server.js
+```
+
 ## Project setup
 ```
 npm install
